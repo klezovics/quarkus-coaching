@@ -31,4 +31,10 @@ class ExampleResource {
     class Car(val name:String="BMW") {
 
     }
+
+    @POST
+    @Path("/body")
+    fun postBody(body:String) {
+        println("Body is $body")
+    }
 }
