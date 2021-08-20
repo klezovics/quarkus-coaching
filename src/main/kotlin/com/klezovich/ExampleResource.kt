@@ -39,7 +39,7 @@ class ExampleResource {
 
     @GET
     @Path("/param")
-    fun getParam(@QueryParam("param") param:String) = """{"param: "$param"}"""
+    fun getParam(@QueryParam("param") param:String?) = """{"param: "${param?:"unknown"}"}"""
 
 
 }
