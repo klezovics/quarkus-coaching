@@ -41,5 +41,12 @@ class ExampleResource {
     @Path("/param")
     fun getParam(@QueryParam("param") param:String?) = """{"param: "${param?:"unknown"}"}"""
 
+    @GET
+    @Path("/header")
+    fun getHeaderParam(@HeaderParam("Secret") secret:String?): String {
+        println("Secret is $secret")
+        if(secret == null) return "NoSecret"
+        return secret
+    }
 
 }
