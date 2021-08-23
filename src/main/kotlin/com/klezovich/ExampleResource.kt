@@ -49,4 +49,10 @@ class ExampleResource {
         return secret
     }
 
+    @GET
+    @Path("/path/{id}")
+    fun getPathId(@PathParam("id") id:String):String {
+        return id
+    }
+
 }
