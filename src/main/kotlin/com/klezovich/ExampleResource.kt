@@ -1,5 +1,7 @@
 package com.klezovich
 
+import com.klezovich.config.Coordinate
+import org.eclipse.microprofile.config.inject.ConfigProperty
 import org.postgresql.core.Oid.JSON
 import java.util.*
 import javax.ws.rs.*
@@ -7,6 +9,14 @@ import javax.ws.rs.core.MediaType
 
 @Path("/hello")
 class ExampleResource {
+
+    @ConfigProperty(name = "treasure.location")
+    lateinit var treasure:Coordinate
+
+    @GET
+    @Path("/treasure")
+    fun treasure() = "${treasure.x},${treasure.y}"
+
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
