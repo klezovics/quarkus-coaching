@@ -1,14 +1,19 @@
 package com.klezovich
 
+import com.klezovich.beans.MyCoolBean
 import com.klezovich.config.Coordinate
 import org.eclipse.microprofile.config.inject.ConfigProperty
 import org.postgresql.core.Oid.JSON
 import java.util.*
+import javax.inject.Inject
 import javax.ws.rs.*
 import javax.ws.rs.core.MediaType
 
 @Path("/hello")
 class ExampleResource {
+
+    @Inject
+    lateinit var coolBean: MyCoolBean
 
     @ConfigProperty(name = "treasure.location")
     lateinit var treasure:Coordinate
@@ -20,7 +25,7 @@ class ExampleResource {
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    fun hello() = "Hello RESTEasy"
+    fun hello() = coolBean.msg()
 
     @GET
     @Path("/uuid")
